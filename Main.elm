@@ -9,13 +9,6 @@ import NativeUi.Handlers exposing (..)
 import Styles
 
 
---
--- app : Signal Ui.NativeUi
--- app =
---   NativeApp.start { model = model, view = view, update = update }
---
-
-
 type Action
   = Start
   | Stop
@@ -250,7 +243,7 @@ inputSignal : Signal StateChange
 inputSignal =
   Signal.mergeMany
     [ Signal.map TimeChange millis
-    , Signal.map ButtonPress (Time.timestamp actions.signal) |> (Signal.map (Debug.log "input"))
+    , Signal.map ButtonPress (Time.timestamp actions.signal)
     ]
 
 
