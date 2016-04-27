@@ -4,7 +4,7 @@ import Signal
 import String
 import Time exposing (Time)
 import NativeUi as Ui
-import NativeUi.Elements as El exposing (..)
+import NativeUi.Elements exposing (..)
 import NativeUi.Handlers exposing (..)
 import Styles
 
@@ -29,7 +29,7 @@ millis =
 
 viewLine : String -> Ui.NativeUi
 viewLine lineText =
-  El.view
+  view
     [ Styles.textBlock ]
     [ Ui.string lineText ]
 
@@ -54,7 +54,7 @@ millisToString millis =
 
 buttonRow : Bool -> Ui.NativeUi
 buttonRow isTiming =
-  El.view
+  view
     [ Styles.buttonRow ]
     <| if isTiming then
         [ actionButton Stop
@@ -114,30 +114,30 @@ timers model =
     lapDuration =
       currentDuration - total model.laps
   in
-    El.view
+    view
       [ Styles.timersWrapper ]
-      [ El.view
+      [ view
           [ Styles.timers ]
-          [ El.view
+          [ view
               [ Styles.lapTimer ]
-              [ El.text [] [ Ui.string (millisToString lapDuration) ] ]
-          , El.view
+              [ text [] [ Ui.string (millisToString lapDuration) ] ]
+          , view
               [ Styles.totalTimer ]
-              [ El.text [] [ Ui.string (millisToString currentDuration) ] ]
+              [ text [] [ Ui.string (millisToString currentDuration) ] ]
           ]
       ]
 
 
 header : String -> Ui.NativeUi
 header heading =
-  El.view
+  view
     [ Styles.header ]
-    [ El.text [] [ Ui.string heading ] ]
+    [ text [] [ Ui.string heading ] ]
 
 
 mainView : String -> Model -> Ui.NativeUi
 mainView heading model =
-  El.view
+  view
     [ Styles.mainView ]
     [ header heading
     , timers model
